@@ -1,4 +1,4 @@
-package com.example.bookbrowser.data.model
+package com.example.bookbrowser.network.model
 
 data class ImageLinks(
     val thumbnail: String
