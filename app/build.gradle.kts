@@ -18,6 +18,23 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    flavorDimensions += "version"
+
+    productFlavors {
+        create("free") {
+            dimension = "version"
+            applicationIdSuffix = ".free"
+            versionNameSuffix = "-free"
+            buildConfigField("boolean", "IS_PREMIUM", "false")
+        }
+        create("paid") {
+            dimension = "version"
+            applicationIdSuffix = ".paid"
+            versionNameSuffix = "-paid"
+            buildConfigField("boolean", "IS_PREMIUM", "true")
+        }
+    }
+
     buildTypes {
         debug {
             isMinifyEnabled = false
@@ -60,8 +77,11 @@ dependencies {
     implementation(libs.androidx.material3)
 
     implementation(libs.androidx.navigation.compose)
-    implementation(project(":network"))
     implementation(libs.coil.compose)
+
+    implementation(project(":network"))
+    "freeImplementation"(project(":feature-free"))
+    "paidImplementation"(project(":feature-paid"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit.ext)

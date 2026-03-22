@@ -14,5 +14,14 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "BookBrowser"
-include ':app'
-include ':network'
+include(":app")
+include(":network")
+
+buildCache {
+    local {
+        isEnabled = true
+        directory = File(rootDir, ".gradle/build-cache")
+    }
+}
+include(":feature-free")
+include(":feature-paid")
