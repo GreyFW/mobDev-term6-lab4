@@ -16,11 +16,15 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.example.bookbrowser.network.model.BookItem
 import com.example.bookbrowser.ui.viewmodels.BookViewModel
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
+import com.example.bookbrowser.BuildConfigHelper
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BookListScreen(
     onBookClick: (String) -> Unit,
+    onTesterClick: () -> Unit,
     viewModel: BookViewModel = viewModel()
 ) {
     val books by viewModel.books
@@ -29,7 +33,14 @@ fun BookListScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Popular Books") }
+                title = { Text("Popular Books") },
+                actions = {
+                    if (BuildConfigHelper.IS_DEBUG) {
+                        IconButton(onClick = onTesterClick) {
+                            Icon(Icons.Default.Settings, contentDescription = "Экран тестировщика")
+                        }
+                    }
+                }
             )
         }
     ) { padding ->

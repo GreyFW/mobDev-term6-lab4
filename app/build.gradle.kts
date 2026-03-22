@@ -21,6 +21,7 @@ android {
     buildTypes {
         debug {
             isMinifyEnabled = false
+            buildConfigField("String", "API_BASE_URL", "\"https://api.debug.example.com/\"")
         }
         release {
             isMinifyEnabled = true
@@ -28,6 +29,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "API_BASE_URL", "\"https://www.googleapis.com/books/v1/\"")
         }
     }
 
@@ -42,6 +44,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
