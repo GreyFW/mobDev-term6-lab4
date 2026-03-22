@@ -1,4 +1,5 @@
 *.iml
+/.gardle
 /local.properties
 /.idea/caches
 /.idea/libraries
